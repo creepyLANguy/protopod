@@ -1,0 +1,6 @@
+framework module protopod {
+  umbrella header "protopod-umbrella.h"
+
+  export *
+  module * { export * }
+}

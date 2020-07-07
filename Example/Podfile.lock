@@ -1,0 +1,16 @@
+PODS:
+  - protopod (0.1.0)
+
+DEPENDENCIES:
+  - protopod (from `../`)
+
+EXTERNAL SOURCES:
+  protopod:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  protopod: 4908d6991f5358d7e2e5bcf22f9e49f49fe084f2
+
+PODFILE CHECKSUM: d7d1f186b00b98c8e071c4129086c0d655759c24
+
+COCOAPODS: 1.9.3
