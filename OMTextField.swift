@@ -1,15 +1,13 @@
 //
-//  protopod.swift
+//  OMTextField.swift
 //  Pods-protopod_Example
 //
-//  Created by Altamish Mahomed on 2020/07/07.
+//  Created by Altamish Mahomed on 2020/07/08.
 //
 
 import Foundation
 
 import UIKit
-import RxSwift
-import RxCocoa
 import MaterialComponents.MaterialTextFields
 
 protocol OMTextFieldDelegate: class {

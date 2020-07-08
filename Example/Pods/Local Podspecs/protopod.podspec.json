@@ -1,9 +1,9 @@
 {
   "name": "protopod",
   "version": "0.1.0",
-  "summary": "A short description of protopod.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/Altamish Mahomed/protopod",
+  "summary": "POC pod for OMDS.",
+  "description": "This is a POC for the OMDS project.",
+  "homepage": "https://github.com/creepylanguy/protopod",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,11 +12,13 @@
     "Altamish Mahomed": "gambit318@gmail.com"
   },
   "source": {
-    "git": "https://github.com/Altamish Mahomed/protopod.git",
+    "git": "https://github.com/creepyLANguy/protopod.git",
     "tag": "0.1.0"
   },
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "protopod/Classes/**/*"
+  "source_files": "protopod/Classes/**/*",
+  "swift_versions": "4.0",
+  "swift_version": "4.0"
 }
