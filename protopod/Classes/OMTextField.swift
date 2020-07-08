@@ -174,31 +174,33 @@ class OMLightTextInputController: OMTextInputController {
     }
 }
 
-extension Reactive where Base: OMTextField {
-    var state: Binder<MDCControllerState> {
-        Binder(self.base) { (textField: OMTextField, state: MDCControllerState) in
-            textField.set(state: state)
-        }
-    }
-
-    var placeholder: Binder<String?> {
-        Binder(self.base) { (textField: OMTextField, placeholder: String?) in
-            textField.placeholder = placeholder
-        }
-    }
-
-    var validationState: Binder<ValidationState> {
-        Binder(self.base) { (textField: OMTextField, validationState: ValidationState) in
-            let state: MDCControllerState
-
-            switch validationState {
-            case .valid:
-                state = .normal
-            case .invalid(let message):
-                state = .error(text: message)
-            }
-
-            textField.set(state: state)
-        }
-    }
-}
+//AL.
+//TODO
+//extension Reactive where Base: OMTextField {
+//    var state: Binder<MDCControllerState> {
+//        Binder(self.base) { (textField: OMTextField, state: MDCControllerState) in
+//            textField.set(state: state)
+//        }
+//    }
+//
+//    var placeholder: Binder<String?> {
+//        Binder(self.base) { (textField: OMTextField, placeholder: String?) in
+//            textField.placeholder = placeholder
+//        }
+//    }
+//
+//    var validationState: Binder<ValidationState> {
+//        Binder(self.base) { (textField: OMTextField, validationState: ValidationState) in
+//            let state: MDCControllerState
+//
+//            switch validationState {
+//            case .valid:
+//                state = .normal
+//            case .invalid(let message):
+//                state = .error(text: message)
+//            }
+//
+//            textField.set(state: state)
+//        }
+//    }
+//}
