@@ -38,5 +38,7 @@ Pod::Spec.new do |s|
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 
+  s.dependency 'MaterialComponents/TextFields'
+
   s.swift_version = '4.0'
 end
