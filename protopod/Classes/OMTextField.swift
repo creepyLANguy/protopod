@@ -18,7 +18,7 @@ class OMTextField: MDCTextField {
 
     weak var omDelegate: OMTextFieldDelegate?
 
-    var themeColour: UIColor = .white {
+    var themecolor: UIColor = .white {
         didSet {
             setUpView()
         }
@@ -47,7 +47,7 @@ class OMTextField: MDCTextField {
         clearButtonMode = .never
         translatesAutoresizingMaskIntoConstraints = false
         inputController = createTextInputController()
-        textColor = themeColour
+        textColor = themecolor
         inputController.set(state: .normal)
         addTarget(self, action: #selector(setActive), for: .editingDidBegin)
     }
@@ -79,30 +79,42 @@ enum MDCControllerState {
 class OMTextInputControllerBase: MDCTextInputControllerUnderline {
     var inputFont = UIFont(name: "Helvetica", size: 14)
 
-    var colourNormal = UIColor.gray {
+    var colorNormal = UIColor.gray {
         didSet {
-            normalColor = self.colourNormal
-            floatingPlaceholderNormalColor = self.colourNormal
+            setNormalColor()
         }
     }
-
-    var colourLight = UIColor.lightGray {
-        didSet {
-            inlinePlaceholderColor = self.colourLight
-            floatingPlaceholderActiveColor = self.colourLight
-        }
+    private func setNormalColor() {
+        normalColor = colorNormal
+        floatingPlaceholderNormalColor = colorNormal
     }
 
-    var colourActive = UIColor.green {
+    var colorLight = UIColor.lightGray {
         didSet {
-            activeColor = self.colourActive
+            setLightColor()
         }
     }
+    private func setLightColor() {
+        inlinePlaceholderColor = colorLight
+        floatingPlaceholderActiveColor = colorLight
+    }
 
-    var colourAlert = UIColor.red {
+    var colorActive = UIColor.green {
         didSet {
-            errorColor = self.colourAlert
+            setActiveColor()
         }
+    }
+    private func setActiveColor() {
+        activeColor = colorActive
+    }
+
+    var colorError = UIColor.red {
+        didSet {
+            setErrorColor()
+        }
+    }
+    private func setErrorColor() {
+        errorColor = colorError
     }
 
     override init() {
@@ -116,24 +128,16 @@ class OMTextInputControllerBase: MDCTextInputControllerUnderline {
         inlinePlaceholderFont = inputFont
         textInputFont = inputFont
 
-        // Normal State
-        normalColor = colourNormal
-        floatingPlaceholderNormalColor = colourNormal
-        inlinePlaceholderColor = colourLight
-
-        // Active State
-        floatingPlaceholderActiveColor = colourLight
-        activeColor = colourActive
-
-        // Error State
-        errorColor = colourAlert
+        setNormalColor()
+        setLightColor()
+        setActiveColor()
+        setErrorColor()
     }
 
     func set(state: MDCControllerState) {
         switch state {
         case .normal:
-            normalColor = colourNormal
-            floatingPlaceholderNormalColor = colourNormal
+            setNormalColor()
             setErrorText(nil, errorAccessibilityValue: nil)
         case .error(let errorText):
             setErrorText(errorText, errorAccessibilityValue: errorText)
@@ -154,12 +158,12 @@ class OMTextInputController: OMTextInputControllerBase {
         super.init(textInput: input)
 
         // Normal State
-        inlinePlaceholderColor = colourLight
+        inlinePlaceholderColor = colorLight
     }
 
     override func set(state: MDCControllerState) {
         super.set(state: state)
-        inlinePlaceholderColor = colourLight
+        inlinePlaceholderColor = colorLight
     }
 }
 
