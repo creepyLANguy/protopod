@@ -14,16 +14,11 @@ protocol OMTextFieldDelegate: class {
     func OMTextFieldDidDeleteBackwards(textField: OMTextField)
 }
 
-enum OMTextFieldStyle {
-    case dark
-    case light
-}
-
 class OMTextField: MDCTextField {
 
     weak var omDelegate: OMTextFieldDelegate?
 
-    var style: OMTextFieldStyle = .dark {
+    var themeColour: UIColor = .white {
         didSet {
             setUpView()
         }
@@ -52,27 +47,13 @@ class OMTextField: MDCTextField {
         clearButtonMode = .never
         translatesAutoresizingMaskIntoConstraints = false
         inputController = createTextInputController()
-        setTextColorAccordingToStyle()
+        textColor = themeColour
         inputController.set(state: .normal)
         addTarget(self, action: #selector(setActive), for: .editingDidBegin)
     }
 
     func createTextInputController() -> OMTextInputController {
-        switch style {
-        case .dark:
-            return OMDarkTextInputController(textInput: self)
-        case .light:
-            return OMLightTextInputController(textInput: self)
-        }
-    }
-
-    func setTextColorAccordingToStyle() {
-        switch style {
-        case .dark:
-            textColor = .omWhite
-        case .light:
-            textColor = .omOnyx
-        }
+        return OMTextInputController(textInput: self)
     }
 
     @objc private func setActive() {
@@ -95,7 +76,13 @@ enum MDCControllerState {
     case active
 }
 
-class OMTextInputController: MDCTextInputControllerUnderline {
+class OMTextInputControllerBase: MDCTextInputControllerUnderline {
+    var inputFont = UIFont(name: "Helvetica", size: 14)
+    var colourNormal = UIColor.gray//(red: 88, green: 89, blue: 91)
+    var colourLight = UIColor.lightGray//(red: 167, green: 169, blue: 172)
+    var colourActive = UIColor.green
+    var colourAlert = UIColor.red
+
     override init() {
         // Do not delete - This really is necessary ='(
         // This is due to weird Objective-C compatibility issues
@@ -104,27 +91,27 @@ class OMTextInputController: MDCTextInputControllerUnderline {
 
     required init(textInput input: (UIView & MDCTextInput)?) {
         super.init(textInput: input)
-        inlinePlaceholderFont = .bodyP
-        textInputFont = .bodyP
+        inlinePlaceholderFont = inputFont
+        textInputFont = inputFont
 
         // Normal State
-        normalColor = .wealthSlate
-        floatingPlaceholderNormalColor = .wealthSlate
-        inlinePlaceholderColor = .wealthCoolGrey
+        normalColor = colourNormal
+        floatingPlaceholderNormalColor = colourNormal
+        inlinePlaceholderColor = colourLight
 
         // Active State
-        floatingPlaceholderActiveColor = .wealthCoolGrey
-        activeColor = .wealthCobalt
+        floatingPlaceholderActiveColor = colourLight
+        activeColor = colourActive
 
         // Error State
-        errorColor = .omAlert
+        errorColor = colourAlert
     }
 
     func set(state: MDCControllerState) {
         switch state {
         case .normal:
-            normalColor = .wealthSlate
-            floatingPlaceholderNormalColor = .wealthSlate
+            normalColor = colourNormal
+            floatingPlaceholderNormalColor = colourNormal
             setErrorText(nil, errorAccessibilityValue: nil)
         case .error(let errorText):
             setErrorText(errorText, errorAccessibilityValue: errorText)
@@ -134,7 +121,7 @@ class OMTextInputController: MDCTextInputControllerUnderline {
     }
 }
 
-class OMDarkTextInputController: OMTextInputController {
+class OMTextInputController: OMTextInputControllerBase {
     override init() {
         // Do not delete - This really is necessary ='(
         // This is due to weird Objective-C compatibility issues
@@ -145,32 +132,12 @@ class OMDarkTextInputController: OMTextInputController {
         super.init(textInput: input)
 
         // Normal State
-        inlinePlaceholderColor = .wealthCoolGrey
+        inlinePlaceholderColor = colourLight
     }
 
     override func set(state: MDCControllerState) {
         super.set(state: state)
-        inlinePlaceholderColor = .wealthCoolGrey
-    }
-}
-
-class OMLightTextInputController: OMTextInputController {
-    override init() {
-        // Do not delete - This really is necessary ='(
-        // This is due to weird Objective-C compatibility issues
-        super.init()
-    }
-
-    required init(textInput input: (UIView & MDCTextInput)?) {
-        super.init(textInput: input)
-
-        // Normal State
-        inlinePlaceholderColor = .wealthCoolGrey
-    }
-
-    override func set(state: MDCControllerState) {
-        super.set(state: state)
-        inlinePlaceholderColor = .wealthCoolGrey
+        inlinePlaceholderColor = colourLight
     }
 }
 
