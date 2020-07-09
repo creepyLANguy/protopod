@@ -78,10 +78,32 @@ enum MDCControllerState {
 
 class OMTextInputControllerBase: MDCTextInputControllerUnderline {
     var inputFont = UIFont(name: "Helvetica", size: 14)
-    var colourNormal = UIColor.gray//(red: 88, green: 89, blue: 91)
-    var colourLight = UIColor.lightGray//(red: 167, green: 169, blue: 172)
-    var colourActive = UIColor.green
-    var colourAlert = UIColor.red
+
+    var colourNormal = UIColor.gray {
+        didSet {
+            normalColor = self.colourNormal
+            floatingPlaceholderNormalColor = self.colourNormal
+        }
+    }
+
+    var colourLight = UIColor.lightGray {
+        didSet {
+            inlinePlaceholderColor = self.colourLight
+            floatingPlaceholderActiveColor = self.colourLight
+        }
+    }
+
+    var colourActive = UIColor.green {
+        didSet {
+            activeColor = self.colourActive
+        }
+    }
+
+    var colourAlert = UIColor.red {
+        didSet {
+            errorColor = self.colourAlert
+        }
+    }
 
     override init() {
         // Do not delete - This really is necessary ='(
