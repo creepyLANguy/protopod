@@ -14,7 +14,7 @@ protocol OMTextFieldDelegate: class {
     func OMTextFieldDidDeleteBackwards(textField: OMTextField)
 }
 
-class OMTextField: MDCTextField {
+public class OMTextField: MDCTextField {
 
     weak var omDelegate: OMTextFieldDelegate?
 
@@ -64,7 +64,7 @@ class OMTextField: MDCTextField {
         inputController.textInputFont = font
     }
 
-    override func deleteBackward() {
+    override public func deleteBackward() {
         super.deleteBackward()
         omDelegate?.OMTextFieldDidDeleteBackwards(textField: self)
     }
