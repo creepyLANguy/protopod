@@ -38,7 +38,7 @@ public class OMTextField: MDCTextField {
         setUpView()
     }
 
-    func set(state: MDCControllerState) {
+    public func set(state: MDCControllerState) {
         inputController.set(state: state)
     }
 
