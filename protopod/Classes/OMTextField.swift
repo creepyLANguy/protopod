@@ -69,25 +69,11 @@ public class OMTextField: MDCTextField {
         omDelegate?.OMTextFieldDidDeleteBackwards(textField: self)
     }
 
-    public var colorNormal = UIColor.gray {
-        didSet {
-            inputController.colorNormal = self.colorNormal
-        }
-    }
-    public var colorLight = UIColor.lightGray {
-        didSet {
-            inputController.colorLight = self.colorLight
-        }
-    }
-    public var colorActive = UIColor.green {
-        didSet {
-            inputController.colorActive = self.colorActive
-        }
-    }
-    public var colorError = UIColor.red {
-        didSet {
-            inputController.colorError = self.colorError
-        }
+    public func setColors(normal: UIColor, light: UIColor, active: UIColor, error: UIColor) {
+        inputController.colorNormal = normal
+        inputController.colorLight = light
+        inputController.colorActive = active
+        inputController.colorError = error
     }
 }
 
