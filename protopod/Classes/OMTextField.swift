@@ -79,7 +79,7 @@ enum MDCControllerState {
 class OMTextInputControllerBase: MDCTextInputControllerUnderline {
     var inputFont = UIFont(name: "Helvetica", size: 14)
 
-    var colorNormal = UIColor.gray {
+    public var colorNormal = UIColor.gray {
         didSet {
             setNormalColor()
         }
@@ -89,7 +89,7 @@ class OMTextInputControllerBase: MDCTextInputControllerUnderline {
         floatingPlaceholderNormalColor = colorNormal
     }
 
-    var colorLight = UIColor.lightGray {
+    public var colorLight = UIColor.lightGray {
         didSet {
             setLightColor()
         }
@@ -99,7 +99,7 @@ class OMTextInputControllerBase: MDCTextInputControllerUnderline {
         floatingPlaceholderActiveColor = colorLight
     }
 
-    var colorActive = UIColor.green {
+    public var colorActive = UIColor.green {
         didSet {
             setActiveColor()
         }
@@ -108,7 +108,7 @@ class OMTextInputControllerBase: MDCTextInputControllerUnderline {
         activeColor = colorActive
     }
 
-    var colorError = UIColor.red {
+    public var colorError = UIColor.red {
         didSet {
             setErrorColor()
         }
