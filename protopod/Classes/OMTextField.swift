@@ -134,7 +134,7 @@ class OMTextInputControllerBase: MDCTextInputControllerUnderline {
         setErrorColor()
     }
 
-    func set(state: MDCControllerState) {
+    public func set(state: MDCControllerState) {
         switch state {
         case .normal:
             setNormalColor()
