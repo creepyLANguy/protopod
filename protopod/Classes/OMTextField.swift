@@ -74,17 +74,17 @@ public class OMTextField: MDCTextField {
             inputController.colorNormal = self.colorNormal
         }
     }
-    var colorLight = UIColor.lightGray {
+    public var colorLight = UIColor.lightGray {
         didSet {
             inputController.colorLight = self.colorLight
         }
     }
-    var colorActive = UIColor.green {
+    public var colorActive = UIColor.green {
         didSet {
             inputController.colorActive = self.colorActive
         }
     }
-    var colorError = UIColor.red {
+    public var colorError = UIColor.red {
         didSet {
             inputController.colorError = self.colorError
         }
