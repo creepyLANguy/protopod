@@ -76,7 +76,7 @@ public enum MDCControllerState {
     case active
 }
 
-class OMTextInputControllerBase: MDCTextInputControllerUnderline {
+public class OMTextInputControllerBase: MDCTextInputControllerUnderline {
     var inputFont = UIFont(name: "Helvetica", size: 14)
 
     public var colorNormal = UIColor.gray {
