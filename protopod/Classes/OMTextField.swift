@@ -70,7 +70,7 @@ public class OMTextField: MDCTextField {
     }
 }
 
-enum MDCControllerState {
+public enum MDCControllerState {
     case normal
     case error(text: String)
     case active
@@ -161,7 +161,7 @@ class OMTextInputController: OMTextInputControllerBase {
         inlinePlaceholderColor = colorLight
     }
 
-    override func set(state: MDCControllerState) {
+    public override func set(state: MDCControllerState) {
         super.set(state: state)
         inlinePlaceholderColor = colorLight
     }
