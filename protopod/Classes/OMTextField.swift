@@ -68,6 +68,27 @@ public class OMTextField: MDCTextField {
         super.deleteBackward()
         omDelegate?.OMTextFieldDidDeleteBackwards(textField: self)
     }
+
+    public var colorNormal = UIColor.gray {
+        didSet {
+            inputController.colorNormal = self.colorNormal
+        }
+    }
+    var colorLight = UIColor.lightGray {
+        didSet {
+            inputController.colorLight = self.colorLight
+        }
+    }
+    var colorActive = UIColor.green {
+        didSet {
+            inputController.colorActive = self.colorActive
+        }
+    }
+    var colorError = UIColor.red {
+        didSet {
+            inputController.colorError = self.colorError
+        }
+    }
 }
 
 public enum MDCControllerState {
@@ -76,10 +97,10 @@ public enum MDCControllerState {
     case active
 }
 
-public class OMTextInputControllerBase: MDCTextInputControllerUnderline {
+class OMTextInputControllerBase: MDCTextInputControllerUnderline {
     var inputFont = UIFont(name: "Helvetica", size: 14)
 
-    public var colorNormal = UIColor.gray {
+    var colorNormal = UIColor.gray {
         didSet {
             setNormalColor()
         }
@@ -89,7 +110,7 @@ public class OMTextInputControllerBase: MDCTextInputControllerUnderline {
         floatingPlaceholderNormalColor = colorNormal
     }
 
-    public var colorLight = UIColor.lightGray {
+    var colorLight = UIColor.lightGray {
         didSet {
             setLightColor()
         }
@@ -99,7 +120,7 @@ public class OMTextInputControllerBase: MDCTextInputControllerUnderline {
         floatingPlaceholderActiveColor = colorLight
     }
 
-    public var colorActive = UIColor.green {
+    var colorActive = UIColor.green {
         didSet {
             setActiveColor()
         }
@@ -108,7 +129,7 @@ public class OMTextInputControllerBase: MDCTextInputControllerUnderline {
         activeColor = colorActive
     }
 
-    public var colorError = UIColor.red {
+    var colorError = UIColor.red {
         didSet {
             setErrorColor()
         }
@@ -161,7 +182,7 @@ class OMTextInputController: OMTextInputControllerBase {
         inlinePlaceholderColor = colorLight
     }
 
-    public override func set(state: MDCControllerState) {
+    override func set(state: MDCControllerState) {
         super.set(state: state)
         inlinePlaceholderColor = colorLight
     }
