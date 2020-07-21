@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
 
   s.description      = 'This is a POC for the OMDS project.'
 
-  s.homepage         = 'https://github.com/creepylanguy/protopod'
+  s.homepage         = 'https://github.com/creepylanguy/protopod/'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Altamish Mahomed' => 'gambit318@gmail.com' }
