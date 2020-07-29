@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '10.3'
 
-  s.source_files = 'protopod/Classes/**/*'
+  s.source_files = './Classes/**/*'
 
   # s.resource_bundles = {
   #   'protopod' => ['protopod/Assets/*.png']
