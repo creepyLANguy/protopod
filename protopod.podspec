@@ -2,7 +2,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'protopod'
-  s.version          = '1.0.5'
+  s.version          = '1.0.6'
   s.summary          = 'POC pod for OMDS.'
 
   s.description      = 'This is a POC for the OMDS project.'
