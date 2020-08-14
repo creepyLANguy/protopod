@@ -10,17 +10,38 @@ import Foundation
 import UIKit
 import MaterialComponents.MaterialTextFields
 
-protocol ThemeDelegate: class {
-    func setColours(omTextField: OMTextField, normal: UIColor, light: UIColor, active: UIColor, error: UIColor)
-}
-
 protocol OMTextFieldDelegate: class {
     func OMTextFieldDidDeleteBackwards(textField: OMTextField)
 }
 
+public struct ColourPack {
+    let normal: UIColor
+    let light: UIColor
+    let active: UIColor
+    let error: UIColor
+
+    public init(normal: UIColor, light: UIColor, active: UIColor, error: UIColor) {
+        self.normal = normal
+        self.light = light
+        self.active = active
+        self.error = error
+    }
+}
+
+public protocol ThemeDelegate: class {
+    func getColours(omTextField: OMTextField) -> ColourPack
+}
+
 public class OMTextField: MDCTextField {
 
-    weak var themeDelegate: ThemeDelegate?
+    public var themeDelegate: ThemeDelegate? {
+        didSet {
+            guard let pack = themeDelegate?.getColours(omTextField: self)  else {
+                return
+            }
+            setColors(normal: pack.normal, light: pack.light, active: pack.active, error: pack.error)
+        }
+    }
 
     weak var omDelegate: OMTextFieldDelegate?
 
